@@ -14,7 +14,7 @@ This repository will also include a end-to-end tutorial on how to dynamically lo
 
 ## Requirements
 
-The `kube-cert-manager` requires a (Google Cloud DNS)[https://cloud.google.com/dns] account and a [service account](https://cloud.google.com/storage/docs/authentication#service_accounts) JSON file.
+The `kube-cert-manager` requires a [Google Cloud DNS](https://cloud.google.com/dns) account and a [service account](https://cloud.google.com/storage/docs/authentication#service_accounts) JSON file.
 
 ## Usage
 
