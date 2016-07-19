@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: kube-cert-manager
+  name: kube-cert-manager
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: kube-cert-manager
+      name: kube-cert-manager
+    spec:
+      containers:
+        - name: kube-cert-manager
+          image: kelseyhightower/kube-cert-manager:0.0.1
+          imagePullPolicy: Always
+        - name: kubelet
+          image: kelseyhightower/kubectl:1.2.3
+          args:
+            - "proxy"

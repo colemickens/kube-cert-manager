@@ -75,10 +75,13 @@ service-account.json:   3915 bytes
 
 ### Run kube-cert-manager
 
-I'll soon publish a container and deployment for this.
+```
+kubectl create -f kubernetes/deployments/kube-cert-manager.yaml 
+deployment "kube-cert-manager" created
+```
 
 ```
-./kube-cert-manager
+kubectl logs kube-cert-manager-2924908400-ua73z kube-cert-manager -f
 ```
 
 ```
@@ -91,6 +94,7 @@ I'll soon publish a container and deployment for this.
 2016/07/19 11:25:56 [INFO][hightowerlabs.com] The server validated our request
 2016/07/19 11:25:59 [INFO][hightowerlabs.com] acme: Validations succeeded; requesting certificates
 2016/07/19 11:26:01 [INFO][hightowerlabs.com] Server responded with a certificate.
+2016/07/19 15:49:48 hightowerlabs.com secret already exists skipping...
 ```
 
 #### Results
