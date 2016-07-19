@@ -12,6 +12,10 @@ This is not an official Google Project.
 
 This repository will also include a end-to-end tutorial on how to dynamically load TLS certificates.
 
+## Requirements
+
+The `kube-cert-manager` requires a (Google Cloud DNS)[https://cloud.google.com/dns] account and a [service account](https://cloud.google.com/storage/docs/authentication#service_accounts) JSON file.
+
 ## Usage
 
 ### Add the Certificate ThirdParty resource
