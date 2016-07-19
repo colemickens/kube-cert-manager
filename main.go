@@ -7,6 +7,7 @@ import (
 
 func main() {
 	for {
+		// this should be a watch
 		certificates, err := getCertificates()
 		if err != nil {
 			log.Println("Get certificates failed:", err)
@@ -15,6 +16,16 @@ func main() {
 		}
 
 		for _, c := range certificates {
+			exists, err := checkSecret(c.Spec.Domain)
+			if err != nil {
+				log.Println("Not able to check if secret exists", err)
+				continue
+			}
+			if exists {
+				log.Printf("%s secret already exists skipping...", c.Spec.Domain)
+				continue
+			}
+
 			serviceAccount, err := getServiceAccountFromSecret(c.Spec.ServiceAccount)
 			if err != nil {
 				log.Println("Get service account failed:", err)

@@ -73,7 +73,27 @@ Data
 service-account.json:   3915 bytes
 ```
 
-### The Results
+### Run kube-cert-manager
+
+I'll soon publish a container and deployment for this.
+
+```
+./kube-cert-manager
+```
+
+```
+2016/07/19 11:24:43 [INFO] acme: Registering account for kelsey.hightower@gmail.com
+2016/07/19 11:24:46 [INFO][hightowerlabs.com] acme: Obtaining SAN certificate
+2016/07/19 11:24:50 [INFO][hightowerlabs.com] acme: Could not find solver for: http-01
+2016/07/19 11:24:50 [INFO][hightowerlabs.com] acme: Could not find solver for: tls-sni-01
+2016/07/19 11:24:50 [INFO][hightowerlabs.com] acme: Trying to solve DNS-01
+2016/07/19 11:24:56 [INFO][hightowerlabs.com] Checking DNS record propagation...
+2016/07/19 11:25:56 [INFO][hightowerlabs.com] The server validated our request
+2016/07/19 11:25:59 [INFO][hightowerlabs.com] acme: Validations succeeded; requesting certificates
+2016/07/19 11:26:01 [INFO][hightowerlabs.com] Server responded with a certificate.
+```
+
+#### Results
 
 ```
 kubectl get secrets hightowerlabs.com

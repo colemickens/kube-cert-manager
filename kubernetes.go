@@ -79,6 +79,17 @@ func getServiceAccountFromSecret(name string) ([]byte, error) {
 	return serviceAccount, nil
 }
 
+func checkSecret(name string) (bool, error) {
+	resp, err := http.Get(apiHost + secretsEndpoint + "/" + name)
+	if err != nil {
+		return false, err
+	}
+	if resp.StatusCode != 200 {
+		return false, nil
+	}
+	return true, nil
+}
+
 func createSecret(domain string, cert, key []byte) error {
 	metadata := make(map[string]string)
 	metadata["name"] = domain
