@@ -7,20 +7,30 @@ This is not an official Google Project.
 `kube-cert-manager` is currently a prototype with the following features:
 
 * Manage Lets Encrypt certificates based on a ThirdParty `certificate` resource.
-* Will only ever support the dns-01 challenge for Google Cloud DNS.
+* Will only ever support the dns-01 challenge for Google Cloud DNS. (For now)
 * Saves Lets Encrypt certificates as Kubernetes secrets.
 
 This repository will also include a end-to-end tutorial on how to dynamically load TLS certificates.
 
 ## Usage
 
-Add the Certificate ThirdParty resource
+### Add the Certificate ThirdParty resource
+
+```
+apiVersion: extensions/v1beta1
+kind: ThirdPartyResource
+description: "A specification of a Let's Encrypt Certificate to manage."
+metadata:
+  name: "certificate.stable.hightower.com"
+versions:
+  - name: v1
+```
 
 ```
 kubectl create -f kubernetes/extensions/certificate.yaml 
 ```
 
-Create a `certificate` object:
+### Create a `certificate` object
 
 ```
 apiVersion: "stable.hightower.com/v1"
@@ -34,7 +44,11 @@ spec:
   serviceAccount: "hightowerlabs"
 ```
 
-Create A Kubernetes secret for the hightowerlabs Google Cloud service account:
+```
+kubectl create -f kubernetes/certificates/hightowerlabs-com.yaml
+```
+
+### Create A Google Cloud Service Account Secret
 
 ```
 kubectl create secret generic hightowerlabs \
