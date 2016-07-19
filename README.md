@@ -73,15 +73,15 @@ hightowerlabs.com   kubernetes.io/tls   2         10m
 kubectl describe secrets hightowerlabs.com
 ```
 ```
-Name:		hightowerlabs.com
-Namespace:	default
-Labels:		<none>
-Annotations:	<none>
+Name:        hightowerlabs.com
+Namespace:   default
+Labels:      <none>
+Annotations: <none>
 
-Type:	kubernetes.io/tls
+Type:        kubernetes.io/tls
 
 Data
 ====
-tls.crt:	1761 bytes
-tls.key:	1679 bytes
+tls.crt:     1761 bytes
+tls.key:     1679 bytes
 ```
