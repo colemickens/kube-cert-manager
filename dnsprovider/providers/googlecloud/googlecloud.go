@@ -28,13 +28,43 @@ import (
 	googledns "google.golang.org/api/dns/v1"
 )
 
+const ProviderName = "googlecloud"
+
+func init() {
+	dnsprovider.RegisterDNSProvider(ProviderName(), NewGoogleCloudDNSProvider)
+}
+
+func ProviderName() string {
+	return ProviderName
+}
+
+// TODO: ran into an issue here...
+// not sure how to model multiple providers inside the Certitifate object
+// even with providers field... azure/gce need different things
+// + gce needs - servieaccount, project, domain
+// + azure needs - ad client id, ad client secret, resource group, zone
+// put all of it into the Secret?
+// use a ConfigMap + Secret?
+// put them all as "loose" fields on the Certificate object and hand all of the fields
+// to the provider and let it decide?
+
+// TODO: merge this with NewGoogleDNSClient, leaving separate for diffing/review purposes
+func NewGoogleCloudDNSProvider(config io.Reader) (Interface, error) {
+	project := "project" // read it from config
+	byts, err := ioutil.ReadAll(config)
+	if err != nil {
+		return nil, err
+	}
+
+	return NewGoogleDNSClient(byts, project)
+}
+
 type GoogleDNSClient struct {
-	domain  string
 	project string
 	*googledns.Service
 }
 
-func NewGoogleDNSClient(serviceAccount []byte, project, domain string) (*GoogleDNSClient, error) {
+func NewGoogleDNSClient(serviceAccount []byte, project string) (*GoogleDNSClient, error) {
 	jwtConfig, err := google.JWTConfigFromJSON(
 		serviceAccount,
 		googledns.NdevClouddnsReadwriteScope,

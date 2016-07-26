@@ -112,6 +112,10 @@ func deleteCertificate(c Certificate, db *bolt.DB) error {
 }
 
 func processCertificate(c Certificate, db *bolt.DB) error {
+	// look at provider name
+	// find a corresponding provider
+	// create it with the rest of the stuff from the Certificate
+
 	account, err := findAccount(c.Spec.Domain, db)
 	if err != nil {
 		return err

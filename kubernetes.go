@@ -41,6 +41,8 @@ type Certificate struct {
 	Spec       CertificateSpec   `json:"spec"`
 }
 
+// TODO: do specs have a concept of a "union" ?
+// aka "This field is either a AzureAccountSpec or a GoogleProjectSpec"?
 type CertificateSpec struct {
 	Domain         string `json:"domain"`
 	Email          string `json:"email"`
